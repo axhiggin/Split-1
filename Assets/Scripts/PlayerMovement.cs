@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode MoveLeft;
     public KeyCode MoveRight;
     public KeyCode MoveJump;
-
     public float speed = 10;
 
     void Start()
@@ -76,10 +75,7 @@ public class PlayerMovement : MonoBehaviour
             transform.Translate(-Vector3.right * speed * Time.deltaTime);
         }
         if(Input.GetKey(MoveJump)){
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
-            
+            transform.Translate(Vector3.up * speed * 2 * Time.deltaTime);            
         }
-       
-
     }
 }
