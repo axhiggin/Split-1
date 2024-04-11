@@ -104,4 +104,28 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
+
+    // Checks if the player collides with different physics materials
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.collider.sharedMaterial != null) {
+            PhysicMaterial material = collision.collider.sharedMaterial;
+            Debug.Log("Collided with material: " + material.name);
+            if (material.name == "Slippery") {
+                speed = 15;
+                jumpForce = 5;
+            }
+            if (material.name == "Sticky") {
+                speed = 6;
+                jumpForce = 4;
+            }
+            if (material.name == "Bouncy") {
+                speed = 10;
+                jumpForce = 7;
+            }
+        }
+        else { // if there's no special material
+            speed = 10;
+            jumpForce = 5;
+        }
+    }
 }
