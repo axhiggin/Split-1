@@ -4,68 +4,48 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private List<KeyCode> keyList = new List<KeyCode>();
-    public KeyCode MoveUp;
-    public KeyCode MoveDown;
-    public KeyCode MoveLeft;
-    public KeyCode MoveRight;
-    public KeyCode MoveJump;
+    public KeyCode MoveUp,MoveDown,MoveLeft, MoveRight, MoveJump;
     public float speed = 10, jumpForce = 2;
     private bool isGrounded;
 
     private Rigidbody rb;
     private Transform mainCameraTransform;
-
+    private SaveManager saveManager;
+    private int lowestY = -70; // var to indicate death of player
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         mainCameraTransform = Camera.main.transform;
+        saveManager = GameObject.FindGameObjectWithTag("save").GetComponent<SaveManager>();
+        transform.position = saveManager.lastCheckpoint;
 
-        // Add all keyboard keys to a list
-        for (int i = (int)KeyCode.Alpha0; i <= (int)KeyCode.Alpha9; i++)
-        {
-            keyList.Add((KeyCode)i);
-        }
-
-        // Add letters to the list
-        for (int i = (int)KeyCode.A; i <= (int)KeyCode.Z; i++)
-        {
-            keyList.Add((KeyCode)i);
-        }
-
-        // Add arrow keys to the list
-        keyList.Add(KeyCode.UpArrow);
-        keyList.Add(KeyCode.DownArrow);
-        keyList.Add(KeyCode.LeftArrow);
-        keyList.Add(KeyCode.RightArrow);
-
-        // Choose random values
-        int randomIndex = Random.Range(0, keyList.Count);
-        MoveUp = keyList[randomIndex];
-        keyList.Remove(keyList[randomIndex]);
-        randomIndex = Random.Range(0, keyList.Count);
-        MoveDown = keyList[randomIndex];
-        keyList.Remove(keyList[randomIndex]);
-        randomIndex = Random.Range(0, keyList.Count);
-        MoveRight = keyList[randomIndex];
-        keyList.Remove(keyList[randomIndex]);
-        randomIndex = Random.Range(0, keyList.Count);
-        MoveLeft = keyList[randomIndex];
-        keyList.Remove(keyList[randomIndex]);
-        randomIndex = Random.Range(0, keyList.Count);
-        MoveJump = keyList[randomIndex];
-        keyList.Remove(keyList[randomIndex]);
+       UpdateControllers();
     }
 
     void Update()
     {
         groundedCheck();
         Move();
+        isDead();
     }
 
     void groundedCheck()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, 1f);
+    }
+
+    private void isDead() {
+        if (transform.position.y <= lowestY) {
+            transform.position = saveManager.lastCheckpoint;
+        }
+    }
+
+    public void UpdateControllers() {
+        MoveUp = saveManager.MoveUp;
+        MoveDown = saveManager.MoveDown;
+        MoveLeft = saveManager.MoveLeft;
+        MoveRight = saveManager.MoveRight;
+        MoveJump = saveManager.MoveJump;
     }
 
     void Move()
@@ -100,7 +80,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(MoveJump) && isGrounded)
         {
-            Debug.Log("JUMP");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
@@ -109,7 +88,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision) {
         if (collision.collider.sharedMaterial != null) {
             PhysicMaterial material = collision.collider.sharedMaterial;
-            Debug.Log("Collided with material: " + material.name);
             if (material.name == "Slippery") {
                 speed = 15;
                 jumpForce = 5;
