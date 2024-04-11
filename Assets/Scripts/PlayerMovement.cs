@@ -14,20 +14,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
 
     private Rigidbody rb;
+    private Transform mainCameraTransform;
 
     void Start()
     {
-        //getting rigidbody component from player
         rb = GetComponent<Rigidbody>();
+        mainCameraTransform = Camera.main.transform;
 
         // Add all keyboard keys to a list
-
-        // foreach (KeyCode keyCode in System.Enum.GetValues(typeof(KeyCode)))
-        // {
-        //     keyList.Add(keyCode);
-        // }
-        
-        // Add numbers to the list
         for (int i = (int)KeyCode.Alpha0; i <= (int)KeyCode.Alpha9; i++)
         {
             keyList.Add((KeyCode)i);
@@ -61,11 +55,8 @@ public class PlayerMovement : MonoBehaviour
         randomIndex = Random.Range(0, keyList.Count);
         MoveJump = keyList[randomIndex];
         keyList.Remove(keyList[randomIndex]);
-
-
     }
 
-    // Update is called once per frame
     void Update()
     {
         groundedCheck();
@@ -79,22 +70,34 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        if (Input.GetKey(MoveUp))
+        if (Input.GetKey(MoveUp) || Input.GetKey(MoveDown) || Input.GetKey(MoveLeft) || Input.GetKey(MoveRight))
         {
-            transform.Translate(-Vector3.forward * speed * Time.deltaTime);
+            // Calculate the movement direction based on camera's forward direction
+            Vector3 movementDirection = mainCameraTransform.forward;
+            movementDirection.y = 0; // Remove vertical component
+            movementDirection = movementDirection.normalized;
+
+            // Rotate the player to face the movement direction
+            if (movementDirection != Vector3.zero)
+            {
+                Quaternion newRotation = Quaternion.LookRotation(movementDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10);
+            }
+
+            // Move the player based on pressed keys
+            Vector3 movement = Vector3.zero;
+            if (Input.GetKey(MoveUp))
+                movement += Vector3.forward;
+            if (Input.GetKey(MoveDown))
+                movement += Vector3.back;
+            if (Input.GetKey(MoveLeft))
+                movement += Vector3.left;
+            if (Input.GetKey(MoveRight))
+                movement += Vector3.right;
+
+            transform.Translate(movement.normalized * speed * Time.deltaTime);
         }
-        if (Input.GetKey(MoveDown))
-        {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        }
-        if (Input.GetKey(MoveLeft))
-        {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
-        }
-        if (Input.GetKey(MoveRight))
-        {
-            transform.Translate(-Vector3.right * speed * Time.deltaTime);
-        }
+
         if (Input.GetKeyDown(MoveJump) && isGrounded)
         {
             Debug.Log("JUMP");
