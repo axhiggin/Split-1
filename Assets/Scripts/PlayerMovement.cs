@@ -10,10 +10,16 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode MoveLeft;
     public KeyCode MoveRight;
     public KeyCode MoveJump;
-    public float speed = 10;
+    public float speed = 10, jumpForce = 2;
+    private bool isGrounded;
+
+    private Rigidbody rb;
 
     void Start()
     {
+        //getting rigidbody component from player
+        rb = GetComponent<Rigidbody>();
+
         // Add all keyboard keys to a list
 
         // foreach (KeyCode keyCode in System.Enum.GetValues(typeof(KeyCode)))
@@ -61,21 +67,38 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
-        if(Input.GetKey(MoveUp)){
+    {
+        groundedCheck();
+        Move();
+    }
+
+    void groundedCheck()
+    {
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1f);
+    }
+
+    void Move()
+    {
+        if (Input.GetKey(MoveUp))
+        {
             transform.Translate(-Vector3.forward * speed * Time.deltaTime);
         }
-        if(Input.GetKey(MoveDown)){
+        if (Input.GetKey(MoveDown))
+        {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
-        if(Input.GetKey(MoveLeft)){
+        if (Input.GetKey(MoveLeft))
+        {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
-        if(Input.GetKey(MoveRight)){
+        if (Input.GetKey(MoveRight))
+        {
             transform.Translate(-Vector3.right * speed * Time.deltaTime);
         }
-        if(Input.GetKey(MoveJump)){
-            transform.Translate(Vector3.up * speed * 2 * Time.deltaTime);            
+        if (Input.GetKeyDown(MoveJump) && isGrounded)
+        {
+            Debug.Log("JUMP");
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 }
