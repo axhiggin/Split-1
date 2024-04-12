@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public KeyCode MoveUp,MoveDown,MoveLeft, MoveRight, MoveJump;
-    public float speed = 10, jumpForce = 2;
+    public float mouseSens = 3.0f, speed = 10.0f, jumpForce = 2.0f;
     private bool isGrounded;
 
     private Rigidbody rb;
+    [SerializeField] GameObject camholder;
     private Transform mainCameraTransform;
     private SaveManager saveManager;
+    private float camRotate;
     private int lowestY = -70; // var to indicate death of player
     void Start()
     {
@@ -26,12 +29,14 @@ public class PlayerMovement : MonoBehaviour
     {
         groundedCheck();
         Move();
+        RotateCam();
         isDead();
     }
 
     void groundedCheck()
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1f);
+        //isGrounded = Physics.Raycast(transform.position, Vector3.down, 1f);
+        isGrounded = GetComponentInChildren<GroundedCheck>().isGrounded();
     }
 
     private void isDead() {
@@ -105,5 +110,13 @@ public class PlayerMovement : MonoBehaviour
             speed = 10;
             jumpForce = 5;
         }
+    }
+
+    private void RotateCam()
+    {
+        transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSens);
+        camRotate += (Input.GetAxis("Mouse Y") * mouseSens * -1);
+        camRotate = Math.Clamp(camRotate, -90f, 90f);
+        camholder.transform.eulerAngles = new Vector3(camRotate, camholder.transform.eulerAngles.y, camholder.transform.eulerAngles.z);
     }
 }
