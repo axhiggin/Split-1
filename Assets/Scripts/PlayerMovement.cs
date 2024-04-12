@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject camholder;
     private Transform mainCameraTransform;
     private SaveManager saveManager;
+    private SoundEffects musicManager;
+
     private float camRotate;
     private int lowestY = -70; // var to indicate death of player
     void Start()
@@ -20,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         mainCameraTransform = Camera.main.transform;
         saveManager = GameObject.FindGameObjectWithTag("save").GetComponent<SaveManager>();
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<SoundEffects>();
         transform.position = saveManager.lastCheckpoint;
 
        UpdateControllers();
@@ -85,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(MoveJump) && isGrounded)
         {
+            musicManager.jumpMusic();
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
