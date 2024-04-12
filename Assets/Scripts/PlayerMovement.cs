@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         groundedCheck();
         Move();
         RotateCam();
-        isDead();
+        //isDead();
     }
 
     void groundedCheck()
@@ -39,11 +39,11 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = GetComponentInChildren<GroundedCheck>().isGrounded();
     }
 
-    private void isDead() {
+    /*private void isDead() {
         if (transform.position.y <= lowestY) {
             transform.position = saveManager.lastCheckpoint;
         }
-    }
+    }*/
 
     public void UpdateControllers() {
         MoveUp = saveManager.MoveUp;
@@ -118,5 +118,15 @@ public class PlayerMovement : MonoBehaviour
         camRotate += (Input.GetAxis("Mouse Y") * mouseSens * -1);
         camRotate = Math.Clamp(camRotate, -90f, 90f);
         camholder.transform.eulerAngles = new Vector3(camRotate, camholder.transform.eulerAngles.y, camholder.transform.eulerAngles.z);
+    }
+
+
+    //DEATH DETECTOR
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.name == "DEATH")
+        {
+            transform.position = saveManager.lastCheckpoint;
+        }
     }
 }
