@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     void groundedCheck()
     {
-        //isGrounded = Physics.Raycast(transform.position, Vector3.down, 1f);
+        // isGrounded = Physics.Raycast(transform.position, Vector3.down, 1f);
         isGrounded = GetComponentInChildren<GroundedCheck>().isGrounded();
     }
 

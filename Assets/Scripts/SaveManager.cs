@@ -17,7 +17,7 @@ public class SaveManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(instance);
             // Initial poisiton
-            lastCheckpoint = new Vector3(0.1919389f, -38.40644f, 37.32944f);
+            lastCheckpoint = new Vector3(-68.65f, -44.96f, 41.6f);
             // List of all controllers
             InitiateList();
             // Initial controllers
