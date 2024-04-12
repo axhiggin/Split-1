@@ -360,6 +360,7 @@
 "Assets/Scripts/PlayButton.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/SaveManager.cs"
+"Assets/Scripts/SoundEffects.cs"
 -langversion:9.0
 
 /deterministic
