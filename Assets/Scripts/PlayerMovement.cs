@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
     public KeyCode MoveUp,MoveDown,MoveLeft, MoveRight, MoveJump;
     public float mouseSens = 3.0f, speed = 10.0f, jumpForce = 2.0f;
     private bool isGrounded;
+    public TextMeshProUGUI up,down,left,right,jump;
+
 
     private Rigidbody rb;
     [SerializeField] GameObject camholder;
@@ -54,12 +57,33 @@ public class PlayerMovement : MonoBehaviour
         MoveLeft = saveManager.MoveLeft;
         MoveRight = saveManager.MoveRight;
         MoveJump = saveManager.MoveJump;
+
+        up.text = " ";
+        down.text = " ";
+        left.text = " ";
+        right.text = " ";
+        jump.text = " ";
+
     }
 
+    void UpdateText(TextMeshProUGUI textMesh, KeyCode key, string prefix = "")
+    {
+        if (Input.GetKey(key))
+        {
+            textMesh.text = prefix + key.ToString().Replace("Alpha", "").Replace("LeftArrow", "←").Replace("RightArrow", "→").Replace("UpArrow", "↑").Replace("DownArrow", "↓");
+        }
+    }
     void Move()
     {
+        UpdateText(up, MoveUp);
+        UpdateText(down, MoveDown);
+        UpdateText(left, MoveLeft);
+        UpdateText(right, MoveRight);
+        UpdateText(jump, MoveJump, "Jump: ");
+
         if (Input.GetKey(MoveUp) || Input.GetKey(MoveDown) || Input.GetKey(MoveLeft) || Input.GetKey(MoveRight))
         {
+
             // Calculate the movement direction based on camera's forward direction
             Vector3 movementDirection = mainCameraTransform.forward;
             movementDirection.y = 0; // Remove vertical component

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class SaveManager : MonoBehaviour
 {
@@ -9,7 +11,7 @@ public class SaveManager : MonoBehaviour
     private List<KeyCode> keyList = new List<KeyCode>();
 
     public KeyCode MoveUp,MoveDown,MoveLeft, MoveRight, MoveJump;
-
+    public TextMeshProUGUI tmpText;
 
     void Awake() {
         
@@ -28,6 +30,14 @@ public class SaveManager : MonoBehaviour
     }
 
     private void InitiateList() {
+        // Up list
+
+        // Left list
+
+        // Right list
+
+        // Down list
+
         // Add all keyboard keys to a list
         for (int i = (int)KeyCode.Alpha0; i <= (int)KeyCode.Alpha9; i++)
         {
@@ -64,5 +74,7 @@ public class SaveManager : MonoBehaviour
         randomIndex = Random.Range(0, keyList.Count);
         MoveJump = keyList[randomIndex];
         keyList.Remove(keyList[randomIndex]);
+        
+        // tmpText.text = "  " + MoveUp.ToString() + "  \n" + MoveLeft.ToString() + " " + MoveDown.ToString() + " " + MoveRight.ToString() + "\nJump: " + MoveJump.ToString();
     }
 }
