@@ -11,7 +11,7 @@ public class GroundedCheck : MonoBehaviour
         return grounded;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         grounded = true;
     }
