@@ -43,8 +43,13 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
+<<<<<<< HEAD
   m_Title: Scene
   m_RootView: {fileID: 5}
+=======
+  m_Title: Project
+  m_RootView: {fileID: 2}
+>>>>>>> 2e043aa88b1820d847d3b936b30892153d61ed37
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
@@ -194,7 +199,11 @@ MonoBehaviour:
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
   controlID: 42
+<<<<<<< HEAD
 --- !u!114 &9
+=======
+--- !u!114 &6
+>>>>>>> 2e043aa88b1820d847d3b936b30892153d61ed37
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -763,9 +772,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: -139.68932, y: -45.730186, z: -74.56077}
     speed: 2
     m_Value: {x: -139.68932, y: -45.730186, z: -74.56077}
+=======
+    m_Target: {x: -154.96127, y: -36.365234, z: -87.17263}
+    speed: 2
+    m_Value: {x: -154.96127, y: -36.365234, z: -87.17263}
+>>>>>>> 2e043aa88b1820d847d3b936b30892153d61ed37
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -811,6 +826,7 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
+<<<<<<< HEAD
     m_Target: {x: 0.30207387, y: 0.64462715, z: -0.30828318, w: 0.6315759}
     speed: 2
     m_Value: {x: 0.30007127, y: 0.6453177, z: -0.30623645, w: 0.63225126}
@@ -818,6 +834,15 @@ MonoBehaviour:
     m_Target: 0.15677872
     speed: 2
     m_Value: 0.1641662
+=======
+    m_Target: {x: 0.0006111525, y: 0.9379101, z: -0.34694964, w: 0.0016945241}
+    speed: 2
+    m_Value: {x: 0.0006111365, y: 0.93788546, z: -0.34694055, w: 0.0016944796}
+  m_Size:
+    m_Target: 1.6926349
+    speed: 2
+    m_Value: 1.6926349
+>>>>>>> 2e043aa88b1820d847d3b936b30892153d61ed37
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -878,10 +903,17 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
+<<<<<<< HEAD
       scrollPos: {x: 0, y: 2.7999878}
       m_SelectedIDs: d65b0000
       m_LastClickedID: 23510
       m_ExpandedIDs: 12fbffff345b00005a5b0000745b0000d85c00000c5d0000
+=======
+      scrollPos: {x: 0, y: 288.40002}
+      m_SelectedIDs: d01c0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: eef1ffff10fbffffe45a0000485b0000745b0000
+>>>>>>> 2e043aa88b1820d847d3b936b30892153d61ed37
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -999,7 +1031,7 @@ MonoBehaviour:
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1083.5, y: 482.75}
   m_ClearInEditMode: 1
-  m_NoCameraWarning: 1
+  m_NoCameraWarning: 0
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
@@ -1048,7 +1080,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/Materials
+=======
+    - Assets/Scripts
+>>>>>>> 2e043aa88b1820d847d3b936b30892153d61ed37
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1056,16 +1092,27 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
+<<<<<<< HEAD
   - Assets/Materials
+=======
+  - Assets/Scripts
+>>>>>>> 2e043aa88b1820d847d3b936b30892153d61ed37
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\quinl\Split-1
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 95}
     m_SelectedIDs: 3c5e0000
     m_LastClickedID: 24124
     m_ExpandedIDs: 000000001e5e000000ca9a3bffffff7f
+=======
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 365e0000
+    m_LastClickedID: 24118
+    m_ExpandedIDs: 000000001e5e000000ca9a3b
+>>>>>>> 2e043aa88b1820d847d3b936b30892153d61ed37
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1121,7 +1168,11 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
+<<<<<<< HEAD
     m_ExpandedInstanceIDs: c62300004659000000000000f05a0000e6690000407000006c5e0000
+=======
+    m_ExpandedInstanceIDs: c62300004659000000000000f05a0000e669000040700000
+>>>>>>> 2e043aa88b1820d847d3b936b30892153d61ed37
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
