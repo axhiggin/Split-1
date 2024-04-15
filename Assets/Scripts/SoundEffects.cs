@@ -9,7 +9,7 @@ public class SoundEffects : MonoBehaviour
     public AudioSource bgSource;
 
     public AudioClip backgroundClip, chugClip, jumpClip;
-    // public AudioClip[] particleClips;
+    public AudioClip[] burpClips;
      void Awake()
     {
         if (AudioManager == null)
@@ -44,14 +44,12 @@ public class SoundEffects : MonoBehaviour
         source.Play();
     }
 
-    // public void particlesMusic() {
-    //     if (particleClips.Length > 0)
-    //     {
-    //         int randomIndex = Random.Range(0, particleClips.Length);
-    //         source.clip  = particleClips[randomIndex];
-    //         source.Play();
-    //     }
-    // }
-
-
+    public void burpMusic() {
+        if (burpClips.Length > 0)
+        {
+            int randomIndex = Random.Range(0, burpClips.Length);
+            source.clip  = burpClips[randomIndex];
+            source.Play();
+        }
+    }
 }

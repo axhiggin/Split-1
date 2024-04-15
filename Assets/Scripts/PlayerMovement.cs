@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private SoundEffects musicManager;
 
     private float camRotate;
-    private int lowestY = -70; // var to indicate death of player
+    // private int lowestY = -70; // var to indicate death of player
     void Start()
     {
         rb = GetComponent<Rigidbody>();

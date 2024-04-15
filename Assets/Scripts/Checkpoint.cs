@@ -21,11 +21,17 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            musicManager.chugMusic();
-            saveManager.lastCheckpoint = transform.position;
-            Destroy(gameObject);
-            saveManager.chooseNewControllers();
-            player.UpdateControllers();
+            StartCoroutine(playSounds());            
         }
+    }
+
+    IEnumerator playSounds() {
+        musicManager.chugMusic();
+        yield return new WaitForSeconds(1);
+        musicManager.burpMusic();
+        saveManager.lastCheckpoint = transform.position;
+        Destroy(gameObject);
+        saveManager.chooseNewControllers();
+        player.UpdateControllers();
     }
 }
