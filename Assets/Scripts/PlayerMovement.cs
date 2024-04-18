@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Checks if the player collides with different physics materials
     private void OnCollisionEnter(Collision collision) {
-        if (collision.collider.sharedMaterial != null) {
+        /*if (collision.collider.sharedMaterial != null) {
             PhysicMaterial material = collision.collider.sharedMaterial;
             if (material.name == "Slippery") {
                 speed = 15;
@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
         else { // if there's no special material
             speed = 10;
             jumpForce = 5;
-        }
+        }*/
     }
 
     private void RotateCam()

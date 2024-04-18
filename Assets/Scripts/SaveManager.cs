@@ -19,7 +19,7 @@ public class SaveManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(instance);
             // Initial poisiton
-            lastCheckpoint = new Vector3(-68.65f, -44.96f, 41.6f);
+            lastCheckpoint = GameObject.Find("Player").transform.position;
             // List of all controllers
             InitiateList();
             // Initial controllers
