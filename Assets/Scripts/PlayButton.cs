@@ -11,6 +11,8 @@ public class PlayButton : MonoBehaviour
     {
         btn = GetComponent<Button>();
         btn.onClick.AddListener(toPlayScene);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame
