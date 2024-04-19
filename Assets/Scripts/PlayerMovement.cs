@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
         saveManager = GameObject.FindGameObjectWithTag("save").GetComponent<SaveManager>();
         musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<SoundEffects>();
         transform.position = saveManager.lastCheckpoint;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
        UpdateControllers();
     }

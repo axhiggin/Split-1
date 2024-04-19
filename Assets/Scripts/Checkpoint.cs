@@ -52,6 +52,7 @@ public class Checkpoint : MonoBehaviour, IInteractable
         {
             saveManager.lastCheckpoint = new Vector3(-68.65f, -44.96f, 41.6f);
             musicManager.chugMusic();
+            transform.GetComponent<Collider>().enabled = false;
             transform.GetComponent<Animator>().SetTrigger("DrinkingTime");
             yield return new WaitForSeconds(3);
             musicManager.burpMusic();
@@ -64,6 +65,7 @@ public class Checkpoint : MonoBehaviour, IInteractable
         {
             saveManager.lastCheckpoint = transform.position;
             musicManager.chugMusic();
+            transform.GetComponent<Collider>().enabled = false;
             transform.GetComponent<Animator>().SetTrigger("DrinkingTime");
             yield return new WaitForSeconds(3);
             musicManager.burpMusic();
